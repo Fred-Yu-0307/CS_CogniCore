@@ -1,37 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
-        <link href="../vendor/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/style.css" rel="stylesheet">
-        <title>CogniCore</title>
-    </head>
+  <?php
+    $title = 'Courses';
+    $courses = 'active';
+    require_once('../include/head.php');
+  ?>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top" id="navi1">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="index.html" id="logo-style"><img src="../images/logo.png"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarNav">
-                <ul class="navbar-nav text-center">
-                  <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="courses.html">Courses</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="setting-account.html">Settings</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="user-dashboard.html">Account</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+      <?php
+        require_once('../include/header.user.php');
+      ?>
 
         <main>
           <section id="courselist">
@@ -75,50 +52,9 @@
           </section>
         </main>
 
-        <footer>
-          <div class="container-fluid">
-            <div class="row ">
-              <div class="col-sm-12 col-md-4 flex-col align-items-center center-logo">
-                <a class="navbar-brand text-center" href="#" id="logo-footer"><img src="../images/logo.png"></a>
-              </div>
-              <div class="col-sm-6 col-md-4 text-center">
-                <h3>Navigation</h3>
-                <ul>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Subjects</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Settings</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Account</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-sm-6 col-md-4 text-center">
-                <h3>Contact Us</h3>
-                <ul>
-                  <li class="nav-item">
-                    <a class="nav-link active">Facebook</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Instagram</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Gmail</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Number</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <p class="text-center">All Rights Reserved 2023</p>
-          </div>
-        </footer>
+      <?php
+        require_once('../include/footer.php');
+      ?>
         
 
         <script src="../vendor/bootstrap-5.0.2/js/bootstrap.min.js"></script>
