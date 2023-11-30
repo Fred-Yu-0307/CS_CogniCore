@@ -1,0 +1,1043 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #FAFAFA;
+}
+
+main.background-img {
+    background-image:  radial-gradient(#196b69 2px, transparent 2px), radial-gradient(#196b69 2px, #FAFAFA 2px);
+    background-size: 80px 80px;
+    background-position: 0 0,40px 40px;
+}
+
+/* Website Color Palette */
+
+.bg-color-white {
+    background-color: #FAFAFA;
+}
+
+.bg-color-gable_green {
+    background-color: #132f2b;
+}
+
+.bg-color-genoa {
+    background-color: #196b69;
+}
+
+.bg-color-shamrock {
+    background-color: #28cc9e;
+}
+
+
+
+/* Navbar */
+
+#logo-style img {
+    width: 170px;
+}
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler:hover {
+    scale: 1.1;
+    transition: 1s;
+    box-shadow: none;
+}
+
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
+    font-weight: 600;
+}
+
+/* Add this custom CSS to change the background color when the dropdown is open */
+.navbar-toggler[aria-expanded="true"] .container-fluid {
+    background-color: #5ec7c5;
+}
+
+
+#navbarNav {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px;
+   background-color: #5ec7c5;
+}
+
+/* Banner */
+
+#logo-header img {
+  width: 50%;
+}
+
+#page-banner{
+    height: 100vh;
+}
+
+.center-vertically {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    align-content: center;
+}
+
+
+#call-to-action {
+    min-height: 50vh;
+}
+
+#banner-img img{
+    width: 100%;
+    max-width: 450px;
+}
+
+#page-banner h1 {
+    font-size: 2em;
+    font-weight: 600;
+}
+
+#page-banner p {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+/* buttons */
+
+#signup-btn {
+    color: #28cc9e;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    border: 2px solid #28cc9e;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    background: transparent;
+    position: relative;
+    transition: all 1s;
+  }
+  
+  #signup-btn:hover {
+    color: #196b69;
+  }
+  
+  #signup-btn::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    left: -40px;
+    transform: skewX(45deg);
+    background-color: #28cc9e;
+    z-index: -1;
+    transition: all 1s;
+  }
+  
+  #signup-btn:hover::before {
+    width: 160%;
+  }
+
+  #login-btn {
+    background-color: #196b69;
+    padding: 10px 20px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border: 2px dashed #196b69;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .4s;
+   }
+   
+   #login-btn span:last-child {
+    display: none;
+   }
+   
+   #login-btn:hover {
+    transition: .4s;
+    border: 2px dashed #196b69;
+    background-color: #fff;
+    color: #196b69;
+   }
+   
+   #login-btn:active {
+    background-color: #196b69;
+   }
+
+/* features */
+h2 {
+    font-weight: 700;
+    font-size: 2em;
+}
+
+h3 {
+    font-weight: 600;
+    font-size: 1.8em;
+    padding-bottom: 15px;
+}
+
+p {
+    font-size: 1em;
+}
+
+#feature-2 #space-top {
+    padding-top: 80px;
+}
+
+footer {
+    background-color: #5ec7c5;
+    height: 67vh;
+}
+
+#logo-footer img{
+    width: 240px;
+    padding: 20px;
+}
+
+.center-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+footer ul li {
+    list-style-type: none;
+    text-decoration: none;
+}
+
+footer .nav-link {
+    color: #132f2b;
+}
+
+ol, ul {
+    padding: 0;
+    line-height: 14px;
+}
+
+footer h3 {
+    font-size: 1.3em;
+    padding-top: 15px;
+}
+
+footer p {
+    padding: 0;
+    margin-bottom: 0px;
+}
+
+/* COURSE CARD */
+.card1 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 32px;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    color: #132f2b;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+  
+  .content .heading {
+    font-weight: 700;
+    font-size: 1.5em;
+  }
+  
+  .content .para {
+    line-height: 1.5;
+  }
+  
+  .content .btn {
+    color: #e8e8e8;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100% );
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card1::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100% );
+    z-index: -1;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+  
+  .card1:hover::before {
+    height: 100%;
+  }
+  
+  .card1:hover {
+    box-shadow: none;
+  }
+  
+  .card1:hover .btn {
+    color: #212121;
+    background: #e8e8e8;
+  }
+  
+  .content .btn:hover {
+    outline: 2px solid #e8e8e8;
+    background: transparent;
+    color: #e8e8e8;
+  }
+  
+  .content .btn:active {
+    box-shadow: none;
+  }
+
+/* Course */
+
+#page-banner h4 {
+    font-size: 1em;
+}
+
+/* Profile Card */
+.card2 {
+    --main-color: #000;
+    --submain-color: #78858F;
+    --bg-color:  #8fecd2;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    background: var(--bg-color);
+  }
+  
+  .card__img {
+    height: 192px;
+    width: 100%;
+  }
+  
+  .card__img svg {
+    height: 100%;
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .card__avatar {
+    position: absolute;
+    width: 114px;
+    height: 114px;
+    background: var(--bg-color);
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: calc(50% - 57px);
+  }
+  
+  .card__avatar svg {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .card__title {
+    margin-top: 60px;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--main-color);
+  }
+  
+  .card__subtitle {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--submain-color);
+  }
+  
+  .card__btn {
+    margin-top: 15px;
+    width: 76px;
+    height: 31px;
+    border: 2px solid var(--main-color);
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 11px;
+    color: var(--main-color);
+    background: var(--bg-color);
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  
+  .card__btn-solid {
+    background: var(--main-color);
+    color: var(--bg-color);
+  }
+  
+  .card__btn:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+  }
+  
+  .card__btn-solid:hover {
+    background: var(--bg-color);
+    color: var(--main-color);
+  }
+
+  /* Progress Card */
+  .card3 {
+    width: 100%;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid transparent;
+  }
+  
+  .card3 a {
+    text-decoration: none
+  }
+  
+  .content {
+    padding: 1.1rem;
+  }
+  
+  .image {
+    object-fit: cover;
+    width: 100%;
+    height: 40px;
+    border-radius: 15px ;
+    background-color:#196b69;
+  }
+  
+  .title {
+    color: #111827;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+  }
+  
+  .desc {
+    color: #6B7280;
+    font-size: 1em;
+  }
+  
+  .progress-container {
+    height: 20px;
+    width: 100%;
+    background-color: #7bf0cf;
+    border-radius: 10px;
+  }
+  
+  .progress {
+    height: 20px;
+    width: 30%;
+    border-radius: 10px;
+    background-color: #196b69;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+  }
+ 
+  .card3 .image p{
+    color:#e8e8e8;
+    font-weight: 500px;
+    padding: 7px 0px 0px 18px;
+  }
+
+  #user-dashboard h2 {
+
+    align-items: center;
+  }
+
+  #option-settings li a{
+    text-decoration: none;
+    color: #111827;
+  }
+
+  #option-settings {
+    line-height: 30px;
+    list-style: none;
+  }
+
+  #course-outline a {
+    text-decoration: none;
+    color: #132f2b;
+  }
+
+  #course-outline h2 {
+    font-size: 1.6em;
+  }
+
+  #course-outline h3 {
+    line-height: 28px;
+    border-radius: 7px;
+    background-color: #28cc9e;
+    padding: 5px;
+    font-size: 1em;
+  }
+
+  #course-outline h3 span {
+    font-size: 1.2em;
+  }
+
+  /* CHECK BOX */
+  /* Hide the default checkbox */
+    .container3 input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+   }
+   
+   .container3 {
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+    padding-right: 6px;
+    margin-bottom: -7px;
+   }
+   
+   /* Create a custom checkbox */
+   .checkmark {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 1.3em;
+    width: 1.3em;
+    border: 2px solid #132f2b;
+    background-color: none;
+    border-radius: 5px;
+    transition: all 0.5s;
+   }
+   
+   /* When the checkbox is checked, add a blue background */
+   .container3 input:checked ~ .checkmark {
+    background-color: #f0f0f0;
+    border: 2px solid #343434;
+   }
+   
+   /* Create the checkmark/indicator (hidden when not checked) */
+   .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    filter: drop-shadow(0 0 10px #888);
+   }
+   
+   /* Show the checkmark when checked */
+   .container3 input:checked ~ .checkmark:after {
+    display: block;
+   }
+   
+   /* Style the checkmark/indicator */
+   .container3 .checkmark:after {
+    left: 0.4em;
+    top: 0.12em;
+    width: 0.3em;
+    height: 0.65em;
+    border: solid #343434;
+    border-width: 0 0.2em 0.2em 0;
+    border-radius: 4px;
+    transform: rotate(45deg);
+    animation: bounceFadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+   }
+   
+   @keyframes bounceFadeIn {
+    from {
+     transform: translate(0, -10px) rotate(45deg);
+     opacity: 0;
+    }
+   
+    to {
+     transform: translate(0, 0) rotate(45deg);
+     opacity: 1;
+    }
+
+   }
+
+   #courselist {
+    min-height: 100vh;
+   }
+
+   #courselist h1 {
+    font-weight: 600;
+    font-size: 2em;
+    }
+
+    #courselist h2 {
+        font-weight: 550;
+        font-size: 1.6em;
+        }
+   #courselist h4 {
+        font-size: 1em;
+   }
+
+   .tab-content img {
+    width:180px;
+    
+   }
+
+   #sc-btn .btn {
+    width: 45%;
+   }
+
+   #sc-btn {
+    display:flex;
+    padding: 20px;
+    justify-content: space-between;
+   }
+
+   /* Slider */
+
+   /* ADMIN CARD */
+  
+   #admin-card {
+    box-sizing: border-box;
+    width: 100%;
+    height: 330px;
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    font-weight: bolder;
+    color: black;
+    flex-direction: column;
+  }
+  
+  #admin-card:hover {
+    border: 1px solid black;
+    transform: scale(1.05);
+  }
+  
+  #admin-card:active {
+    transform: scale(0.95) rotateZ(1.7deg);
+  }
+
+#card-total h4, #card-total p, #card-total2 h4, #card-total2 p {
+  font-size: 2em;
+  padding: 0px 30px 0px 30px;
+}
+
+   /* The switch - the box around the slider */
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 3.5em;
+    height: 2em;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(182, 182, 182);
+    transition: .4s;
+    border-radius: 10px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 8px;
+    left: 0.3em;
+    bottom: 0.3em;
+    transform: rotate(270deg);
+    background-color: rgb(255, 255, 255);
+    transition: .4s;
+  }
+  
+  .switch input:checked + .slider {
+    background-color: #21cc4c;
+  }
+  
+  .switch input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  .switch input:checked + .slider:before {
+    transform: translateX(1.5em);
+  }
+
+  #user-dashboard {
+    min-height: 100vh;
+  }
+
+  #current-semester .btn a {
+    text-decoration: none;
+    color: #e8e8e8;
+  }
+
+  #current-semester:hover .btn a{
+    color: #212121;
+  }
+
+  #notifications h4 {
+    font-size: 1em;
+  }
+
+  #notifications h4 span {
+    display: block;
+    font-size: 1.4em;
+  }
+
+  #privacy h4 {
+    font-size: 1em;
+  }
+
+  #privacy h4 span {
+    display: block;
+    font-size: 1.4em;
+  }
+
+  #course-outline h2 span {
+    color: #343434;
+    font-size: 18px;
+  }
+
+  .modal .btn a {
+    color: #e8e8e8;
+    text-decoration: none;
+  }
+
+  #sort-by {
+    display: flex;
+  }
+
+  #sort-by h5{
+    padding: 10px 5px 0 0;
+  }
+
+  #sort-by h5.active {
+    color: #28cc9e;
+  }
+
+  #graph h4 {
+    font-size: 2em;
+    font-weight: 600;
+  }
+
+  #graph {
+    padding: 40px 0 0 0;
+  }
+
+  #graph2 {
+    border: 2px solid #132f2b;
+    border-radius: 5px;
+  }
+
+  .logo-header2 img {
+    min-width: 100px;
+    width: 250px;
+    padding-top: 15px;
+  }
+
+  #nav-options {
+    padding-top: 20px;
+  }
+
+  #button-list {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  #button-list .btn{
+    margin: 10px;
+  }
+
+  #admin-setting {
+    padding: 25px;
+  }
+
+  #adminset .btn {
+    margin: 0 15px 0 0px;
+  }
+
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+  }
+  
+  #inputfield {
+    border-style: none;
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    outline: none;
+    border-radius: 50%;
+    transition: .5s ease-in-out;
+    background-color: #7e4fd4;
+    box-shadow: 0px 0px 3px #f3f3f3;
+    padding-right: 40px;
+    color: #132f2b;
+  }
+  
+  #inputfield::placeholder,
+  #inputfield {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 17px;
+  }
+  
+  #inputfield::placeholder {
+    color: #8f8f8f;
+  }
+  
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border-style: none;
+    border-radius: 50%;
+    pointer-events: painted;
+    background-color: transparent;
+    transition: .2s linear;
+  }
+  
+  .icon:focus ~ #inputfield,
+  #inputfield:focus {
+    box-shadow: none;
+    width: 250px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 3px solid #7e4fd4;
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+  }
+  
+
+@media screen and (min-width: 768px){
+#page-banner h1 {
+    font-size: 2.6em;
+    font-weight: 600;
+}
+
+#sort-by h5{
+  padding: 10px 25px 0 0;
+}
+
+#page-banner p {
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+#heading-banner {
+    padding-left: 40px;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 2.5em;
+}
+
+    
+#feature-list {
+    padding-right: 40px;
+}
+
+#feature-list-2 {
+    padding-left: 40px;
+}
+
+#feature-2 {
+    padding-top: 0px;
+}
+
+#feature-3 h3 {
+    padding-bottom: 30px;
+}
+
+#navi1 {
+    height: 80px;
+}
+footer {
+    height: 30vh;
+
+}
+
+.card__title {
+    margin-top: 120px;
+}
+
+#admin-card {
+  width: 100%;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  position: relative;
+}
+
+#inputfield {
+  border-style: none;
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+  outline: none;
+  border-radius: 50%;
+  transition: .5s ease-in-out;
+  background-color: #7e4fd4;
+  box-shadow: 0px 0px 3px #f3f3f3;
+  padding-right: 40px;
+  color: #132f2b;
+}
+
+#inputfield::placeholder,
+#inputfield {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 17px;
+}
+
+#inputfield::placeholder {
+  color: #8f8f8f;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border-style: none;
+  border-radius: 50%;
+  pointer-events: painted;
+  background-color: transparent;
+  transition: .2s linear;
+}
+
+.icon:focus ~ #inputfield,
+#inputfield:focus {
+  box-shadow: none;
+  width: 250px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 3px solid #7e4fd4;
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+#manage-courses h4 {
+  font-size: 2.4em;
+}
+
+
+}
+
+
+
+
+
+
+@media screen and (min-width: 992px) {
+    #banner-img img{
+        width: 100%;
+        max-width: 650px;
+    }
+
+    #sort-by h5{
+      padding: 10px 25px 0 0;
+    }
+
+    #page-banner h1 {
+        font-size: 3em;
+        font-weight: 600;
+    }
+    
+    #page-banner p {
+        font-size: 1.5em;
+        font-weight: 500;
+    }
+
+    #feature-2 {
+        padding-top: 0px;
+    }
+
+    footer {
+        height: 100%;
+    }
+
+    #logo-style img {
+        width: 190px;
+    }
+
+    #navbarNav {
+        border-radius: 0px;
+        padding: 0px;
+       background-color:transparent;
+    }
+
+    nav {
+        padding: 0 120px;
+    }
+
+    main {
+        padding: 0 120px;
+    }
+
+    #admin-card {
+      width: 33%;
+    }
+}
