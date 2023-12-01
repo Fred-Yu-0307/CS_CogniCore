@@ -21,12 +21,10 @@
                       <h1>Welcome to Your Computer Science Learning Hub!</h1>
                       <p>Course Outline Guide for Computer Science Students.</p>
                       <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#loginModal"id="login-btn">Login</button>
-                      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#signupModal1" id="signup-btn">Sign up</button>
+                      <button type="button" class="btn" id="signup-btn"><a href="signup.php">Sign up</a></button>
                   </div>
               </div>
           </div>
-
-          
 
           <!-- Login Modal -->
           <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">

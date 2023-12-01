@@ -39,6 +39,8 @@
         }
     }    
 
+
+
     function validate_cpw($password, $cpassword){
         $pw = htmlentities($password);
         $cpw = htmlentities($cpassword);
