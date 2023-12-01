@@ -1,3 +1,21 @@
+<?php
+  require_once '../classes/course.class.php';
+  require_once  '../tools/functions.php';
+
+  if(isset($_GET['id'])){
+    $course =  new Course();
+    $record = $course->fetch($_GET['id']);
+    
+    $id = $record['course_id'];
+    $subject_code = $record['subject_code'];
+    $prerequisite = $record['prerequisite'];
+    $course_name = $record['course_name'];
+    $year_level_and_semester = $record['year_level_and_semester'];
+    $subject_description = $record['subject_description']; 
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <?php
@@ -13,10 +31,12 @@
         <main>
           <section id="courselist">
             <div class="container-fluid pb-5">
-              <h1 class="pt-4"><span></span>Data Structures and Algorithms</h1>
-              <h4>Data Structures and Algorithms are the backbone of computer science and software development. This
-                subject equips you with the knowledge and skills to design, analyze, and implement efficient data
-                structures and algorithms, critical for solving complex computational problems.</h4>
+              <?php if ($record) { ?>
+              <h2 class=""><?php echo $record['subject_code'] ?></h2>
+              <h3>Prerequisite: <?php echo $record['prerequisite'] ?></h2>
+              <h1 class="pt-4"><span></span><?php echo $record['course_name'] ?></h1>
+              <h3><?php echo $record['year_level_and_semester'] ?></h3>
+              <h4><?php echo $record['subject_description'] ?></h4>
                 <div class="row" id="course-outline">
                   <h2 class="pt-5 pb-3">What You Need to Learn: <span>(Click Topic to Redirect on References)</span></h2>
                   <div class="col-sm-12 col-md-6">
@@ -31,6 +51,7 @@
                   </div>
                 </div>
             </div>
+            <?php } ?>
 
             <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">

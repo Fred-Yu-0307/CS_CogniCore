@@ -162,7 +162,7 @@
                               <!-- Add more form fields as needed -->
                           </form>
                       <div class="modal-footer px-4">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-secondary" >Close</button>
                           <button type="submit" name="save" class="btn btn-primary" id="signupButton">Sign Up</button>
                       </div>
       </div>

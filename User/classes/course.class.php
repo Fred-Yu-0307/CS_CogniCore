@@ -9,6 +9,7 @@ Class Course{
     public $subject_code;
     public $prerequisite;
     public $course_name;
+    public $year_level_and_semester;
     public $subject_description;
 
     protected $db;
@@ -39,12 +40,12 @@ Class Course{
     }
 
     function edit(){
-        $sql = "UPDATE product SET product_name=:product_name, description=:description, category=:category, price=:price, availability=:availability WHERE id = :id;";
+        $sql = "UPDATE courses SET subject_code=:subject_code, prerequisite=:prerequisite, course_name=:course_name, price=:price, availability=:availability WHERE id = :id;";
 
         $query=$this->db->connect()->prepare($sql);
-        $query->bindParam(':product_name', $this->product_name);
-        $query->bindParam(':description', $this->description);
-        $query->bindParam(':category', $this->category);
+        $query->bindParam(':subject_code', $this->subject_code);
+        $query->bindParam(':prerequisite', $this->prerequisite);
+        $query->bindParam(':course_name', $this->course_name);
         $query->bindParam(':price', $this->price);
         $query->bindParam(':availability', $this->availability);
         $query->bindParam(':course_id', $this->course_id);

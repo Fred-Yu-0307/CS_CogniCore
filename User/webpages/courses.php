@@ -15,40 +15,41 @@
                 <div class="container-fluid">
                     <h1 class="pt-5">Computer Science 2A Courses <span>(First Semester)</span></h1>
                     <p> Add Courses to Monitor </p>
+                    <?php
+                        require_once '../classes/course.class.php';
+                        require_once '../tools/functions.php';
+
+                        $course = new Course();
+
+                        // Fetch staff data (you should modify this to retrieve data from your database)
+                        $courseArray = $course->show();
+                        $counter = 1;
+                            
+                    ?>
                     <div class="row py-4">
+                        <?php
+                          if ($courseArray) {
+                            foreach ($courseArray as $item) {
+                        ?>
                         <div class="col-sm-12 col-md-6 col-lg-4 pb-3">
                             <div class="card1">
                                 <div class="content">
-                                  <p class="heading">Data Structures and Algorithms
+                                  <h4><?= $item['subject_code'] ?></h4>
+                                  <p>Prerequisite: <?= $item['prerequisite'] ?></p>
+                                  <p class="heading"><?= $item['course_name'] ?>
                                   </p><p class="para">
-                                    Data Structures and Algorithms are the backbone of computer science and software development. This subject equips you with the knowledge and skills to design, analyze, and implement efficient data structures and algorithms, critical for solving complex computational problems.
+                                  <?= $item['subject_description'] ?>
                                   </p>
-                                  <button class="btn"><a href="data-structures.html">Read more</a></button>
+                                  <button class="btn"><a href="course_details.php?id=<?php echo $item['course_id']; ?>">Read more</a></button>
                                 </div>
                               </div>
                         </div>
-                        <div class="col-sm-12 col-md-6 col-lg-4 pb-3">
-                            <div class="card1">
-                                <div class="content">
-                                  <p class="heading">Object-Oriented Programming (OOP)
-                                  </p><p class="para">
-                                    Object-Oriented Programming (OOP) is the cornerstone of modern software development. This subject delves into the principles and practices of OOP, teaching you how to design, build, and maintain software using objects, classes, inheritance, and encapsulation.
-                                  </p>
-                                  <button class="btn">Read more</button>
-                                </div>
-                              </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-4 pb-3">
-                            <div class="card1">
-                                <div class="content">
-                                  <p class="heading">Discrete Structures 2
-                                  </p><p class="para">
-                                    Discrete Structures 2 is the continuation of your exploration into the mathematical foundations of computer science. This advanced course delves into topics such as formal logic, proof techniques, automata theory, and formal language theory, equipping you with a deeper understanding of theoretical computer science.
-                                  </p>
-                                  <button class="btn">Read more</button>
-                                </div>
-                              </div>
-                        </div>
+                        <?php
+                                    $counter++;
+                                }
+                            }
+                        ?>
+                        
                     </div>
                     
                 </div>
