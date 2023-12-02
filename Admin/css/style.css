@@ -16,6 +16,10 @@ main.background-img {
     background-size: 80px 80px;
     background-position: 0 0,40px 40px;
 }
+#table1{
+  height:10vh;
+  overflow:scroll;
+}
 
 /* Website Color Palette */
 
@@ -161,10 +165,6 @@ main.background-img {
     transition: .4s;
    }
    
-   #login-btn span:last-child {
-    display: none;
-   }
-   
    #login-btn:hover {
     transition: .4s;
     border: 2px dashed #196b69;
@@ -198,12 +198,12 @@ p {
 
 footer {
     background-color: #5ec7c5;
-    height: 67vh;
+    height: 10vh;
 }
 
 #logo-footer img{
-    width: 240px;
-    padding: 20px;
+    width: 100%;
+   
 }
 
 .center-logo {
@@ -613,12 +613,7 @@ footer p {
    #sc-btn {
     display:flex;
     padding: 20px;
-    justify-content: space-between;
-   }
-
-   /* Slider */
-
-   /* ADMIN CARD */
+    justify-content: space-between;}
   
    #admin-card {
     box-sizing: border-box;
@@ -639,14 +634,60 @@ footer p {
     font-weight: bolder;
     color: black;
     flex-direction: column;
+    margin-left: 10%;
+   
+  }
+  #admin-card img{
+    border-radius: 50%;
+    }
+  #dashboard h2{
+    margin-top:3%;
+
   }
   
   #admin-card:hover {
+    border: 1px solid rgb(255, 255, 255);
+  }
+  
+
+  #card-total {
+    box-sizing: border-box;
+    width: 40%;
+    height: 30vh;
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    margin-left: 2%;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    user-select: none;
+    font-weight: bolder;
+    color: black;
+    margin-right:3%;
+
+  }
+  #card-totalrow{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    text-align: center;
+
+  }
+  #card-totalrow h4{
+    margin-top: 10%;
+
+  }
+
+  #card-total:hover {
     border: 1px solid black;
     transform: scale(1.05);
   }
   
-  #admin-card:active {
+  #card-total:active {
     transform: scale(0.95) rotateZ(1.7deg);
   }
 
@@ -769,6 +810,7 @@ footer p {
 
   #graph {
     padding: 40px 0 0 0;
+    
   }
 
   #graph2 {
@@ -786,14 +828,13 @@ footer p {
     padding-top: 20px;
   }
 
-  #button-list {
+  #button{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
+    align-content: center;
   }
 
-  #button-list .btn{
-    margin: 10px;
-  }
+
 
   #admin-setting {
     padding: 25px;
@@ -863,7 +904,7 @@ footer p {
   }
   
 
-@media screen and (min-width: 768px){
+@media screen and (max-width: 768px){
 #page-banner h1 {
     font-size: 2.6em;
     font-weight: 600;
@@ -908,7 +949,9 @@ h2 {
     height: 80px;
 }
 footer {
-    height: 30vh;
+  height: 50vh;
+  margin-top: 70%;
+    
 
 }
 
@@ -919,6 +962,7 @@ footer {
 #admin-card {
   width: 100%;
 }
+
 
 .input-wrapper {
   display: flex;
@@ -1017,6 +1061,7 @@ footer {
 
     footer {
         height: 100%;
+        margin-top: 15%;
     }
 
     #logo-style img {
@@ -1041,3 +1086,21 @@ footer {
       width: 33%;
     }
 }
+
+@media screen and (max-width: 320px){
+  footer {
+    height: 130vh;
+    margin-top: 200%;
+    width:100%;
+  }
+
+  #graph{
+    width:100%;
+    margin-top:10%;
+    padding:0%;
+  }
+
+  #graph h5{
+  font-size: 80%;
+  }
+} 

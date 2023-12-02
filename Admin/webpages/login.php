@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,6 +21,13 @@
               </div>
                   <div class="col-sm-12 col-md-6 text-center" id="heading-banner">
                       <h1>CS Learning Hub<br><span>Cognicore Admin</span></h1>
+                      <?php
+                    if(isset($_SESSION['status']) && $_SESSION['status'] !='') 
+                    {
+                        echo '<h2 class="bg-danger text-white"> '.$_SESSION['status'].' </h2>';
+                        unset($_SESSION['status']);
+                    }
+                ?>
                       <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#loginModal"id="login-btn">Login</button>
                   </div>
               </div>
@@ -32,22 +43,25 @@
                     </div>
                     <div class="modal-body">
                         <!-- Add your sign-up form here -->
-                        <form>
+                        <form class="user" action="code.php" method="POST">
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username">
+                                <label for="email" class="form-label">Username</label>
+                                <input type="email" class="form-control" id="email" name="email">
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password" name="password">
                             </div>
+                            <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="login_btn" class="btn btn-primary "> Login </button>
+                        <hr>
+                    </div>
                             <!-- Add more form fields as needed -->
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary"><a href="dashboard.html">Login</a></button>
-                    </div>
+
+                      </div>
+                    
                 </div>
             </div>
         </div>
