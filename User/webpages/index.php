@@ -1,9 +1,38 @@
+<?php
+    //resume session here to fetch session values
+    session_start();
+    /*
+        if user is login then redirect to authenticated page
+    */
+    if (isset($_SESSION['user']) && $_SESSION['user'] == 'users'){
+        header('location: ./courses.php');
+    }
+
+    //if the login button is clicked
+    require_once('../classes/account.class.php');
+    
+    if (isset($_POST['login'])) {
+        $account = new Account();
+        $account->email = htmlentities($_POST['email']);
+        $account->password = htmlentities($_POST['password']);
+        if ($account->sign_in_users()){
+            $_SESSION['user'] = 'users';
+            header('location: courses.php');
+        }else{
+            $error =  'Invalid email/password. Try again.';
+        }
+    }
+    
+    //if the above code is false then html below will be displayed
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <?php
-    $title = 'Courses';
+    $title = 'Cognicore';
     $home = 'active';
     require_once('../include/head.php');
+    require_once '../tools/functions.php';
   ?>
     <body>
       <?php
@@ -36,22 +65,29 @@
                     </div>
                     <div class="modal-body">
                         <!-- Add your sign-up form here -->
-                        <form>
+                        <form method="post" action="">
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" value="<?php if(isset($_POST['email'])){ echo $_POST['email']; } ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password">
+                                <input type="password" class="form-control" id="password" name="password" value="<?php if(isset($_POST['password'])){ echo $_POST['password']; } ?>">
                             </div>
                             <!-- Add more form fields as needed -->
+                            <button type="submit" name="login" class="btn btn-primary mt-3 px-5 py-2">Login</button>
+                            <?php
+                            if (isset($_POST['login']) && isset($error)){
+                            ?>
+                                <p class="text-danger mt-3 text-center"><?= $error ?></p>
+                            <?php
+                            }
+                            ?>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary"><a href="courses.html">Login</a></button>
-                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                                <h6 class="py-4 mb-5">Already have an account? <a href="index.php">Login</a></h6>
+                            </div>
                 </div>
             </div>
         </div>
@@ -100,7 +136,7 @@
               <div class="row flex-col align-items-center center-vertically-2" id="call-to-action">
                   <div class="col text-center">
                       <h3>Ready to get started? Click the link below to begin your journey into the fascinating realm of computing.</h3>
-                      <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#signupModal1" id="signup-btn">Start Learning</button>
+                      <button class="btn" type="button" id="signup-btn"><a href="signup.php">Start Learning<a></button>
                     </div>
                   </div>
               </div>

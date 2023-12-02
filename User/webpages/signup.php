@@ -12,6 +12,7 @@
     $user->year_level = htmlentities($_POST['year_level']);
     $user->section = htmlentities($_POST['section']);
     $user->password = htmlentities($_POST['password']);
+    $user->profile_pic = htmlentities($_POST['profile_pic']);
 
     //validate
     if (validate_field($user->last_name) &&
@@ -46,7 +47,7 @@
 
     <main>
       <div class="col-12 col-md-6 ">
-        <h1 class="py-4 text-center">Create Your Account</h1>
+        <h1 class="py-4 text-center" id="courname">Create Your Account</h1>
                           <form method="post" action="">
                               <div class="row px-3">
                                 <div class="col-12 ">
@@ -159,12 +160,28 @@
                                   </div>
                                 </div>
                               </div>
-                              <!-- Add more form fields as needed -->
+
+                              <div class="col-12 col-sm-9">
+                                  <div class="mb-3">
+                                    <label for="profile_pic" class="form-label">Profile Picture</label>
+                                    <input type="file" class="form-control" id="profile_pic" name="profile_pic" accept="image/*" value="<?php if(isset($_POST['profile_pic'])) { echo $_POST['profile_pic']; }else if(isset($user->profile_pic)) { echo $user->profile_pic; } ?>">
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-center">
+                            <!-- Add more form fields as needed -->
+                              <button type="submit" name="save" class="btn btn-primary mt-3 px-5 py-2" id="signupButton">Create Account</button>
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-center">
+                                <h6 class="py-4 mb-5">Already have an account? <a href="index.php">Login</a></h6>
+                            </div>
                           </form>
-                      <div class="modal-footer px-4">
-                          <button type="button" class="btn btn-secondary" >Close</button>
-                          <button type="submit" name="save" class="btn btn-primary" id="signupButton">Sign Up</button>
-                      </div>
+
+                          
+
+
       </div>
       <div class="col-12 col-md-6">
 

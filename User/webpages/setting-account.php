@@ -1,3 +1,79 @@
+<?php
+    
+    require_once '../classes/user.class.php';
+    require_once  '../tools/functions.php';
+
+    //resume session here to fetch session values
+    session_start();
+    // Check if the user is logged in
+    if (!isset($_SESSION['user_id'])) {
+      // Redirect to the login page or another page as needed
+      header("Location: index.php");
+      exit();
+}
+    
+    //if the above code is false then html below will be displayed
+
+    // Fetch information for the logged-in user
+    $user_id = $_SESSION['user_id'];
+    $user = new User();
+    $record = $staff->fetch($user_id);
+
+    // Assuming that the fetch method returns user information
+    if ($record) {
+        $staff->id = $record['id'];
+        $staff->firstname = $record['firstname'];
+        $staff->lastname = $record['lastname'];
+        $staff->role = $record['role'];
+        $staff->email = $record['email'];
+        $old_email = $staff->email;
+        $staff->status = $record['status'];
+    } else {
+        // Handle the case where user information couldn't be retrieved
+        // You might want to redirect to an error page or handle it in another way
+        header("Location: error.php");
+        exit();
+    }
+
+    if(isset($_POST['save'])){
+        $staff = new Staff();
+        //sanitize
+        $staff->id = $_GET['id'];
+        $staff->firstname = htmlentities($_POST['firstname']);
+        $staff->lastname = htmlentities($_POST['lastname']);
+        $staff->role = htmlentities($_POST['role']);
+        $staff->email = htmlentities($_POST['email']);
+        if(isset($_POST['status'])){
+            $staff->status = htmlentities($_POST['status']);
+        }else{
+            $staff->status = '';
+        }
+
+        //validate
+        if (validate_field($staff->firstname) &&
+        validate_field($staff->lastname) &&
+        validate_field($staff->role) &&
+        validate_field($staff->email) &&
+        validate_field($staff->status) &&
+        validate_email($staff->email)){
+            if($old_email != $staff->email){
+                if(!$staff->is_email_exist()){
+                    if($staff->edit()){
+                        header('location: staff.php');
+                    }else{
+                        echo 'An error occured while adding in the database.';
+                    } 
+                }
+            }else{
+                if($staff->edit()){
+                    header('location: staff.php');
+                }else{
+                    echo 'An error occured while adding in the database.';
+                } 
+            }
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <?php

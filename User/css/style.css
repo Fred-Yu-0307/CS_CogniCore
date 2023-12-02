@@ -252,7 +252,7 @@ footer p {
   .content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 20px;
     color: #132f2b;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
@@ -599,7 +599,7 @@ footer p {
         font-size: 1.6em;
         }
    #courselist h4 {
-        font-size: 1em;
+        font-size: 1.2em;
    }
 
    .tab-content img {

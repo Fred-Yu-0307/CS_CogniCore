@@ -1,4 +1,15 @@
 <?php
+  session_start();
+  /*
+      if user is not login then redirect to login page,
+      this is to prevent users from accessing pages that requires
+      authentication such as the dashboard
+  */
+  if (!isset($_SESSION['user']) || $_SESSION['user'] != 'users'){
+      header('location: ./index.php');
+  }
+
+
   require_once '../classes/course.class.php';
   require_once  '../tools/functions.php';
 
@@ -32,14 +43,105 @@
         <main>
           <section id="courselist">
             <div class="container-fluid pb-5">
-              <?php if ($record) { ?>
-              <h2 class=""><?php echo $record['subject_code'] ?></h2>
-              <h3>Prerequisite: <?php echo $record['prerequisite'] ?></h2>
-              <h1 class="pt-4"><span></span><?php echo $record['course_name'] ?></h1>
-              <h3><?php echo $record['year_level_and_semester'] ?></h3>
-              <h4><?php echo $record['subject_description'] ?></h4>
+              <div class="row">
+                <div class="col-12 col-md-7">
+                <?php if ($record) { ?>
+                  <h2 class="pt-4" id="subjcode"><?php echo $record['subject_code'] ?></h2>
+                  <h3 class="prereq">Prerequisite: <?php echo $record['prerequisite'] ?></h2>
+                  <h1 class="pt-2" id="courname"><span></span><?php echo $record['course_name'] ?></h1>
+                  <h3 class="yearsem"><?php echo $record['year_level_and_semester'] ?></h3>
+                  <h4><?php echo $record['subject_description'] ?></h4>
+                </div>
+
+                <?php } ?>
+                      <div class="col-md-5">
+                      <h1 class="pt-4 d-flex">Available Tutors</h1>
+                      <button type="button" class="btn btn-primary d-flex" data-bs-toggle="modal" data-bs-target="#signupModal">
+                          Apply as Tutor
+                      </button>
+                          <div class="card scrollable-container">
+                              <div class="card-body">
+                                  
+                              <?php 
+
+                              require_once '../classes/tutor.class.php';
+                                
+                                $course_tutor = new Tutor();
+
+                                // Fetch staff data (you should modify this to retrieve data from your database)
+                                $tutorArray = $course_tutor->show3($id);
+                                $countertutor = 1;
+
+                                    if ($tutorArray) {
+                                      foreach ($tutorArray as $tutoritem) { ?>
+                              <div class="tutor_card col-12 col-md-12 mt-4">
+                                  <div class="infos">
+                                  <?php if ($tutoritem['profile_pic']): ?>
+                                    <?php
+                                        $imageData = base64_encode($tutoritem['profile_pic']);
+                                        $imageSrc = "data:image/jpeg;base64," . $imageData;
+                                    ?>
+                                      <div class="image"><img src="<?php echo $imageSrc; ?>"></div>
+                                      <?php endif; ?>
+                                      <div class="info">
+                                          <div>
+                                              <p class="name">
+                                                <?php echo $tutoritem['tutor_name']; ?>
+                                              </p>
+                                              <p class="function">
+                                                <?php echo $tutoritem['description']; ?>
+                                              </p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <button class="request" type="button">
+                                    <?php echo $tutoritem['contact_detail']; ?>
+                                      </button>
+                              </div>
+                              </div>
+
+                              <?php
+                                                $countertutor++;
+                                            }
+                                        }
+                                    ?>
+
+                              <!-- Signup Modal -->
+                              <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog d-flex align-items-center justify-content-center">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title" id="signupModalLabel">Apply as Tutor</h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                              <!-- Signup form goes here -->
+                                              <form>
+                                                  <div class="mb-3">
+                                                      <label for="description" class="form-label">Description</label>
+                                                      <input type="text" class="form-control" id="description" name="description" required>
+                                                  </div>
+                                                  <div class="mb-3">
+                                                      <label for="contact_detail" class="form-label">Contact Detail</label>
+                                                      <input type="text" class="form-control" id="contact_detail" name="contact_detail" required>
+                                                  </div>
+                                                  <!-- Add more form fields as needed -->
+                                                  <button type="submit" class="btn btn-primary">Apply as Tutor</button>
+                                              </form>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              </div>
+                          </div>
+                      </div>
+
+                
+
+
                 <div class="row" id="course-outline">
-                  <h2 class="pt-5 pb-3">What You Need to Learn: <span>(Click Topic to Redirect on References)</span></h2>
+                  <h2 class=" pb-3">What You Need to Learn:</h2>
 
                   <div class="row py-4">
                   <?php 
@@ -63,7 +165,8 @@
                                   </p><p class="para">
                                   <?= $item['topic_description']; ?>
                                   </p>
-                                  <button class="btn"><a href="<?php echo urlencode($item['topic_link']); ?>" target="_blank" onclick="openCleanLink(event)">Read more</a></button>
+                                  <button class="btn"><a href="<?php echo $item['topic_link']; ?>" onclick="openCleanLink(event)">Read more</a></button>
+                                  <button class="btn"><a href="#">Take Quiz</a></button>
                                 </div>
                               </div>
                         </div>
@@ -78,7 +181,7 @@
                   
                 </div>
             </div>
-            <?php } ?>
+            
 
             <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
