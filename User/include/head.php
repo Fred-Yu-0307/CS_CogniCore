@@ -8,4 +8,5 @@
     <link rel="stylesheet" href="../vendor/font-awesome-4.7.0/css/font-awesome.min.css"/>
     <!-- Your custome css goes here -->
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/stylesheet.css">
 </head>

@@ -26,6 +26,7 @@
     <body>
       <?php
         require_once('../include/header.user.php');
+
       ?>
 
         <main>
@@ -39,16 +40,42 @@
               <h4><?php echo $record['subject_description'] ?></h4>
                 <div class="row" id="course-outline">
                   <h2 class="pt-5 pb-3">What You Need to Learn: <span>(Click Topic to Redirect on References)</span></h2>
-                  <div class="col-sm-12 col-md-6">
-                    <h3><a href="https://python-textbok.readthedocs.io/en/1.0/Sorting_and_Searching_Algorithms.html" target="_blank"><label class="container3"> <input checked="checked" type="checkbox" id="showModalQuiz"> <div class="checkmark"></div> </label><span>TOPIC 1:</span><br> Analysis of Algorithms & Searching and Sorting</a></h3>
-                    <h3><a href="https://everythingcomputerscience.com/discrete_mathematics/Stacks_and_Queues.html" target="_blank"><label class="container3"> <input checked="checked" type="checkbox"> <div class="checkmark"></div> </label><span>TOPIC 2:</span><br> Stacks & Queues</a></h3>
-                    <h3><a href="https://www.oreilly.com/library/view/data-structures-and/9781118771334/11_chap07.html" target="_blank"><label class="container3"> <input checked="checked" type="checkbox"> <div class="checkmark"></div> </label><span>TOPIC 3:</span><br> Lists & Iterators</a></h3>
-                  </div>
+
+                  <div class="row py-4">
+                  <?php 
+
+                  require_once '../classes/topic_links.class.php';
+                    
+                    $topic_link = new Link();
+
+                    // Fetch staff data (you should modify this to retrieve data from your database)
+                    $courseArray = $topic_link->show2($id);
+                    $counter = 1;
+
+                        if ($courseArray) {
+                          foreach ($courseArray as $item) { ?>
+                        <div class="col-sm-12 col-md-6 col-lg-4 pb-3">
+                            <div class="card1">
+                                <div class="content">
+                                  <h4>Topic #<?php echo $item['topic_number']; ?></h4>
+
+                                  <p class="heading"><?= $item['topic_name']; ?>
+                                  </p><p class="para">
+                                  <?= $item['topic_description']; ?>
+                                  </p>
+                                  <button class="btn"><a href="<?php echo urlencode($item['topic_link']); ?>" target="_blank" onclick="openCleanLink(event)">Read more</a></button>
+                                </div>
+                              </div>
+                        </div>
+                        <?php
+                                    $counter++;
+                                }
+                            }
+                        ?>
+                        
+                    </div>
                   
-                  <div class="col-sm-12 col-md-6">
-                    <h3><a href="https://www.tutorialspoint.com/data_structures_algorithms/tree_data_structure.htm" target="_blank"><label class="container3"> <input checked="checked" type="checkbox"> <div class="checkmark"></div> </label><span>TOPIC 4:</span><br> Trees & Binary Search Trees</a></h3>
-                    <h3><a href="https://www.hackerearth.com/practice/notes/heaps-and-priority-queues/" ><label class="container3"> <input checked="checked" type="checkbox"> <div class="checkmark"></div> </label><span>TOPIC 5:</span><br> Heaps and Priority Queues, Graphs & Hashing</a></h3>
-                  </div>
+                  
                 </div>
             </div>
             <?php } ?>
@@ -73,9 +100,30 @@
           </section>
         </main>
 
+
       <?php
         require_once('../include/footer.php');
       ?>
+
+      <script>
+      function openCleanLink(event) {
+          event.preventDefault(); // Prevent the default behavior of the link click
+
+          // Get the raw link from the href attribute
+          const rawLink = event.target.href;
+
+          // Decode the URL to get the actual link
+          const decodedLink = decodeURIComponent(rawLink);
+
+          // Open the link in a new tab
+          const newTab = window.open(decodedLink, '_blank');
+
+          // Focus on the new tab's window to ensure it's in focus
+          if (newTab) {
+              newTab.focus();
+          }
+      }
+      </script>
         
 
         <script src="../vendor/bootstrap-5.0.2/js/bootstrap.min.js"></script>
