@@ -4,8 +4,13 @@
     /*
         if user is login then redirect to authenticated page
     */
-    if (isset($_SESSION['user']) && $_SESSION['user'] == 'users'){
+          // Store user information in the session
+          
+      
+
+    if (isset($_SESSION['user_id']) && $_SESSION['email']){
         header('location: ./courses.php');
+        exit();
     }
 
     //if the login button is clicked
@@ -16,7 +21,12 @@
         $account->email = htmlentities($_POST['email']);
         $account->password = htmlentities($_POST['password']);
         if ($account->sign_in_users()){
+
+          $user_id =  $account->user_id; 
+          $email =$account->email; 
             $_SESSION['user'] = 'users';
+            $_SESSION['user_id'] = $user_id;
+            $_SESSION['email'] = $email;
             header('location: courses.php');
         }else{
             $error =  'Invalid email/password. Try again.';

@@ -10,74 +10,71 @@
       // Redirect to the login page or another page as needed
       header("Location: index.php");
       exit();
-}
+    } 
     
     //if the above code is false then html below will be displayed
 
     // Fetch information for the logged-in user
     $user_id = $_SESSION['user_id'];
     $user = new User();
-    $record = $staff->fetch($user_id);
-
+    $record = $user->fetch($user_id);
+    
     // Assuming that the fetch method returns user information
     if ($record) {
-        $staff->id = $record['id'];
-        $staff->firstname = $record['firstname'];
-        $staff->lastname = $record['lastname'];
-        $staff->role = $record['role'];
-        $staff->email = $record['email'];
-        $old_email = $staff->email;
-        $staff->status = $record['status'];
+        $user->user_id = $record['user_id'];
+        $user->last_name = $record['last_name'];
+        $user->first_name = $record['first_name'];
+        $user->email = $record['email'];
+        $user->year_level = $record['year_level'];
+        $old_email = $user->email;
+        $user->section = $record['section'];
     } else {
         // Handle the case where user information couldn't be retrieved
         // You might want to redirect to an error page or handle it in another way
-        header("Location: error.php");
-        exit();
+        header("Location: #");
+        
     }
 
     if(isset($_POST['save'])){
-        $staff = new Staff();
+        $user = new User();
         //sanitize
-        $staff->id = $_GET['id'];
-        $staff->firstname = htmlentities($_POST['firstname']);
-        $staff->lastname = htmlentities($_POST['lastname']);
-        $staff->role = htmlentities($_POST['role']);
-        $staff->email = htmlentities($_POST['email']);
-        if(isset($_POST['status'])){
-            $staff->status = htmlentities($_POST['status']);
-        }else{
-            $staff->status = '';
-        }
+        $user->user_id = $_GET['user_id'];
+        $user->last_name = htmlentities($_POST['last_name']);
+        $user->first_name = htmlentities($_POST['first_name']);
+        $user->email = htmlentities($_POST['email']);
+        $user->year_level = htmlentities($_POST['year_level']);
+        $user->section = htmlentities($_POST['section']);
+        
 
         //validate
-        if (validate_field($staff->firstname) &&
-        validate_field($staff->lastname) &&
-        validate_field($staff->role) &&
-        validate_field($staff->email) &&
-        validate_field($staff->status) &&
-        validate_email($staff->email)){
-            if($old_email != $staff->email){
-                if(!$staff->is_email_exist()){
-                    if($staff->edit()){
-                        header('location: staff.php');
+        if (validate_field($user->last_name) &&
+        validate_field($user->first_name) &&
+        validate_field($user->email) &&
+        validate_field($user->year_level) &&
+        validate_field($user->section) &&
+        validate_email($user->email)){
+            if($old_email != $user->email){
+                if(!$user->is_email_exist()){
+                    if($user->edit()){
+                        header('location: setting-account.php');
                     }else{
                         echo 'An error occured while adding in the database.';
                     } 
                 }
             }else{
-                if($staff->edit()){
-                    header('location: staff.php');
+                if($user->edit()){
+                    header('location: setting-account.php');
                 }else{
                     echo 'An error occured while adding in the database.';
                 } 
             }
         }
-    }
+    } 
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <?php
-    $title = 'Courses';
+    $title = 'Account';
     $settings = 'active';
     require_once('../include/head.php');
   ?>
@@ -121,15 +118,30 @@
                               <div class="col-sm-12 col-md-8">
                                 <div class="row">
                                   <div class="col-sm-12 col-md-6">
+                                  <form method="post" action="">
                                     <div class="mb-3">
-                                      <label for="textInput" class="form-label">First Name</label>
-                                      <input type="text" class="form-control" id="textInput" placeholder="Alexandra">
+                                      <label for="last_name" class="form-label">First Name</label>
+                                      <input type="text" class="form-control" id="last_name" name="last_name" required value="<?php if(isset($_POST['last_name'])) { echo $_POST['last_name']; }else if(isset($user->last_name)) { echo $user->last_name; } ?>">
+                                      <?php
+                                          if(isset($_POST['last_name']) && !validate_field($_POST['last_name'])){
+                                      ?>
+                                              <p class="text-danger my-1">Last Name is required</p>
+                                      <?php
+                                          }
+                                      ?>
                                     </div>
                                   </div>
                                   <div class="col-sm-12 col-md-6">
                                     <div class="mb-3">
-                                      <label for="textInput" class="form-label">Last Name</label>
-                                      <input type="text" class="form-control" id="textInput" placeholder="Alejo">
+                                      <label for="first_name" class="form-label">First Name</label>
+                                      <input type="text" class="form-control" id="first_name" name="first_name" required value="<?php if(isset($_POST['first_name'])) { echo $_POST['first_name']; }else if(isset($user->first_name)) { echo $user->first_name; } ?>">
+                                      <?php
+                                          if(isset($_POST['first_name']) && !validate_field($_POST['first_name'])){
+                                      ?>
+                                              <p class="text-danger my-1">First Name is required</p>
+                                      <?php
+                                          }
+                                      ?>
                                     </div>
                                   </div>
                                 </div>
@@ -137,29 +149,59 @@
                                 <div class="row">
                                   <div class="col-sm-12 col-md-6">
                                     <div class="mb-3">
-                                      <label for="textInput" class="form-label">Year</label>
-                                      <input type="text" class="form-control" id="textInput" placeholder="BS Computer Science 2A">
+                                      <label for="year_level" class="form-label">Year</label>
+                                      <select name="year_level" id="year_level" class="form-select">
+                                          <option value="">Select Year Level</option>
+                                          <option value="BS Computer Science 1" <?php if(isset($_POST['year_level']) && $_POST['year_level'] == 'BS Computer Science 1') { echo 'selected'; }else if(isset($user->year_level) && $user->year_level == 'BS Computer Science 1') { echo 'selected'; } ?>>BS Computer Science 1</option>
+                                          <option value="BS Computer Science 2" <?php if(isset($_POST['year_level']) && $_POST['year_level'] == 'BS Computer Science 2') { echo 'selected'; }else if(isset($user->year_level) && $user->year_level == 'BS Computer Science 2') { echo 'selected'; } ?>>BS Computer Science 2</option>
+                                          <option value="BS Computer Science 3" <?php if(isset($_POST['year_level']) && $_POST['year_level'] == 'BS Computer Science 3') { echo 'selected'; }else if(isset($user->year_level) && $user->year_level == 'BS Computer Science 3') { echo 'selected'; } ?>>BS Computer Science 3</option>
+                                          <option value="BS Computer Science 4" <?php if(isset($_POST['year_level']) && $_POST['year_level'] == 'BS Computer Science 4') { echo 'selected'; }else if(isset($user->year_level) && $user->year_level == 'BS Computer Science 4') { echo 'selected'; } ?>>BS Computer Science 4</option>
+                                      </select>
+                                      <?php
+                                          if(isset($_POST['year_level']) && !validate_field($_POST['year_level'])){
+                                      ?>
+                                              <p class="text-danger my-1">Select Year Level</p>
+                                      <?php
+                                          }
+                                      ?>
                                     </div>
                                   </div>
                                   <div class="col-sm-12 col-md-6">
                                     <div class="mb-3">
-                                      <label for="textInput" class="form-label">Section</label>
-                                      <input type="text" class="form-control" id="textInput" placeholder="A">
+                                      <label for="section" class="form-label">Section</label>
+                                      <select name="section" id="section" class="form-select">
+                                          <option value="">Select Year Level</option>
+                                          <option value="A" <?php if(isset($_POST['section']) && $_POST['section'] == 'A') { echo 'selected'; }else if(isset($user->section) && $user->section == 'A') { echo 'selected'; } ?>>A</option>
+                                          <option value="B" <?php if(isset($_POST['section']) && $_POST['section'] == 'B') { echo 'selected'; }else if(isset($user->section) && $user->section == 'B') { echo 'selected'; } ?>>B</option>
+                                          <option value="C" <?php if(isset($_POST['section']) && $_POST['section'] == 'C') { echo 'selected'; }else if(isset($user->section) && $user->section == 'C') { echo 'selected'; } ?>>C</option>
+                                      </select>
                                     </div>
                                   </div>
                                 </div>
 
                                 <div class="row">
-                                  <div class="col-sm-12">
+                                  <div class="col-sm-12"> 
                                     <div class="mb-3">
-                                      <label for="textInput" class="form-label">Email</label>
-                                      <input type="email" class="form-control" id="textInput" placeholder="qb2021021020@wmsu.edu.ph">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-12">
-                                    <div class="mb-3">
-                                      <label for="textInput" class="form-label">Password</label>
-                                      <input type="password" class="form-control" id="textInput" placeholder="****************">
+                                      <label for="email" class="form-label">Email</label>
+                                      <input type="email" class="form-control" id="email" name="email" required value="<?php if(isset($_POST['email'])) { echo $_POST['email']; }else if(isset($user->email)) { echo $user->email; } ?>">
+                                      <?php
+                                          $new_user = new User();
+                                          if(isset($_POST['email'])){
+                                              $new_user->email = htmlentities($_POST['email']);
+                                          }else{
+                                              $new_user->email = '';
+                                          }
+
+                                          if(isset($_POST['email']) && strcmp(validate_email($_POST['email']), 'success') != 0){
+                                      ?>
+                                              <p class="text-danger my-1"><?php echo validate_email($_POST['email']) ?></p>
+                                      <?php
+                                          }else if ($new_user->is_email_exist() && $_POST['email'] && $old_email != $user->email){
+                                      ?>
+                                              <p class="text-danger my-1">Email already exist</p>
+                                      <?php      
+                                          }
+                                      ?>
                                     </div>
                                   </div>
                                 </div>
@@ -167,9 +209,9 @@
                             </div>
 
                             <div class="row" id="sc-btn">
-                              <button type="button" class="btn" id="login-btn">Save</button>
-                                <button type="button" class="btn" id="signup-btn">Cancel</button>
+                              <button type="submit" name="save" class="btn" id="login-btn">Save</button>
                             </div>
+                          </form>
                         </div>
                         <div class="tab-pane fade" id="notifications">
                             <h3>Notifications Settings</h3>

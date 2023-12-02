@@ -45,7 +45,9 @@ class Account{
             $accountData = $query->fetch(PDO::FETCH_ASSOC);
     
             if ($accountData && password_verify($this->password, $accountData['password'])) {
-                $this->user_id = $accountData['user_id'];
+                $this->user_id = $accountData['user_id']; // Store user_id in the class property
+                $this->email = $accountData['email']; // Store email in the class property
+            
                 return true;
             }
         }
