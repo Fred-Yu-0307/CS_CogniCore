@@ -124,6 +124,10 @@ section#page-banner{
     transition: all 1s;
     overflow: hidden;
   }
+
+  #signup-btn a {
+    text-decoration: none;
+  }
   
   #signup-btn:hover {
     color: #196b69;

@@ -25,7 +25,7 @@
         <main>
             <section id="current-semester">
                 <div class="container-fluid">
-                    <h1 class="pt-5">Computer Science 2A Courses <span>(First Semester)</span></h1>
+                    <h1 class="pt-5">Computer Science Courses <span></span></h1>
                     <p> Add Courses to Monitor </p>
                     <?php
                         require_once '../classes/course.class.php';
@@ -62,63 +62,6 @@
                             }
                         ?>
                         
-                    </div>
-                    
-                </div>
-            </section>
-
-            <section id="other-semester">
-                <div class="container-fluid">
-                    <h1 class="pt-5">Other Year Level's Courses</span></h1>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="year_level" data-bs-toggle="dropdown" aria-expanded="false">
-                            Year Levels
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="year_level">
-                            <li><a class="dropdown-item" href="#">1st Year First Semester</a></li>
-                            <li><a class="dropdown-item" href="#">1st Year Second Semester</a></li>
-                            <li><a class="dropdown-item" href="#">2nd Year First Semester</a></li>
-                            <li><a class="dropdown-item" href="#">2nd Year Second Semester</a></li>
-                            <li><a class="dropdown-item" href="#">3rd Year First Semester</a></li>
-                            <li><a class="dropdown-item" href="#">3rd Year Second Semester</a></li>
-                            <li><a class="dropdown-item" href="#">4th Year First Semester</a></li>
-                            <li><a class="dropdown-item" href="#">4th Year Second Semester</a></li>
-                        </ul>
-                    </div>
-                    <div class="row py-4">
-                        <div class="col-sm-12 col-md-6 col-lg-4 pb-3">
-                            <div class="card1">
-                                <div class="content">
-                                  <p class="heading">Information Management
-                                  </p><p class="para">
-                                    Information Management is the art and science of handling data and information strategically within organizations. In a data-driven world, this subject explores how to collect, store, analyze, and protect information effectively, ensuring it becomes a valuable asset rather than a burden.
-                                  </p>
-                                  <button class="btn">Read more</button>
-                                </div>
-                              </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-4 pb-3">
-                            <div class="card1">
-                                <div class="content">
-                                  <p class="heading">Architecture and Organization
-                                  </p><p class="para">
-                                    Architecture and Organization is a fundamental subject in computer science and engineering, focusing on the design and structure of computer systems. It delves into the hardware components, organization, and functioning of computers, providing a crucial understanding of how digital systems work from the ground up.
-                                  </p>
-                                  <button class="btn">Read more</button>
-                                </div>
-                              </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-4 pb-3">
-                            <div class="card1">
-                                <div class="content">
-                                  <p class="heading">Design and Analysis of Algorithms
-                                  </p><p class="para">
-                                    Design and Analysis of Algorithms is a core subject in computer science that focuses on the development and evaluation of efficient algorithms for solving complex problems. It provides the essential tools and techniques for designing algorithms, analyzing their performance, and understanding their theoretical foundations.
-                                  </p>
-                                  <button class="btn">Read more</button>
-                                </div>
-                              </div>
-                        </div>
                     </div>
                     
                 </div>

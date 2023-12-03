@@ -96,7 +96,7 @@
                         </form>
                     </div>
                     <div class="col-12 d-flex justify-content-center">
-                                <h6 class="py-4 mb-5">Already have an account? <a href="index.php">Login</a></h6>
+                                <h6 class="py-4 mb-5">Don't have an account? <a href="signup.php">Signup</a></h6>
                             </div>
                 </div>
             </div>

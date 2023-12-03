@@ -120,7 +120,7 @@
                             <a class="nav-link" id="help-tab" data-bs-toggle="pill" href="#help">Help and Support</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="help-tab" data-bs-toggle="pill" href="#help">Logout</a>
+                            <a class="nav-link text-danger mt-4" href="../tools/logout.php">Logout</a>
                         </li>
                     </ul>
                 </div>
