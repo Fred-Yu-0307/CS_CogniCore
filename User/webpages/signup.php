@@ -14,6 +14,23 @@
     $user->password = htmlentities($_POST['password']);
     $user->profile_pic = htmlentities($_POST['profile_pic']);
 
+    if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == UPLOAD_ERR_OK) {
+      $file_tmp = $_FILES['profile_pic']['tmp_name'];
+      $file_size = $_FILES['profile_pic']['size'];
+
+      // Ensure the file size is within an acceptable range (adjust as needed)
+      $max_file_size = 5 * 1024 * 1024; // 5 MB
+      if ($file_size > $max_file_size) {
+          echo 'File size exceeds the limit.';
+      } else {
+          // Read the file contents
+          $file_content = file_get_contents($file_tmp);
+
+          // Update the user record in the database
+          $user->profile_pic = $file_content;
+      }
+  }
+
     //validate
     if (validate_field($user->last_name) &&
     validate_field($user->first_name) &&
@@ -48,7 +65,7 @@
     <main>
       <div class="col-12 col-md-6 ">
         <h1 class="py-4 text-center" id="courname">Create Your Account</h1>
-                          <form method="post" action="">
+                          <form method="post" action="" enctype="multipart/form-data">
                               <div class="row px-3">
                                 <div class="col-12 ">
                                   <di class="row justify-content-center">
@@ -164,7 +181,7 @@
                               <div class="col-12 col-sm-9">
                                   <div class="mb-3">
                                     <label for="profile_pic" class="form-label">Profile Picture</label>
-                                    <input type="file" class="form-control" id="profile_pic" name="profile_pic" accept="image/*" value="<?php if(isset($_POST['profile_pic'])) { echo $_POST['profile_pic']; }else if(isset($user->profile_pic)) { echo $user->profile_pic; } ?>">
+                                    <input type="file" class="form-control" id="profile_pic" name="profile_pic" accept="image/*">
                                   </div>
                                 </div>
                             </div>

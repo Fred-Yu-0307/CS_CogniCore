@@ -28,6 +28,7 @@
         $user->year_level = $record['year_level'];
         $old_email = $user->email;
         $user->section = $record['section'];
+        $user->profile_pic = $record['profile_pic'];
     } else {
         // Handle the case where user information couldn't be retrieved
         // You might want to redirect to an error page or handle it in another way
@@ -38,12 +39,29 @@
     if(isset($_POST['save'])){
         $user = new User();
         //sanitize
-        $user->user_id = $_GET['user_id'];
+        $user->user_id = $user_id;
         $user->last_name = htmlentities($_POST['last_name']);
         $user->first_name = htmlentities($_POST['first_name']);
         $user->email = htmlentities($_POST['email']);
         $user->year_level = htmlentities($_POST['year_level']);
         $user->section = htmlentities($_POST['section']);
+
+        if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == UPLOAD_ERR_OK) {
+          $file_tmp = $_FILES['profile_pic']['tmp_name'];
+          $file_size = $_FILES['profile_pic']['size'];
+  
+          // Ensure the file size is within an acceptable range (adjust as needed)
+          $max_file_size = 5 * 1024 * 1024; // 5 MB
+          if ($file_size > $max_file_size) {
+              echo 'File size exceeds the limit.';
+          } else {
+              // Read the file contents
+              $file_content = file_get_contents($file_tmp);
+  
+              // Update the user record in the database
+              $user->profile_pic = $file_content;
+          }
+      }
         
 
         //validate
@@ -101,6 +119,9 @@
                         <li class="nav-item">
                             <a class="nav-link" id="help-tab" data-bs-toggle="pill" href="#help">Help and Support</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="help-tab" data-bs-toggle="pill" href="#help">Logout</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-sm-12 col-md-9 pt-3">
@@ -111,16 +132,22 @@
                             <!-- Include account settings content here -->
                             <div class="row">
                               <div class="col-sm-12 col-md-4 text-center pb-4">
-                                <img src="../images/avatar.png" class="pb-4">
-                                <button type="button" class="btn" id="login-btn">Upload Picture</button>
-                                <button type="button" class="btn" id="signup-btn">Delete Picture</button>
+                              <?php
+                                $imageData = base64_encode($user->profile_pic);
+                                $imageSrc = "data:image/jpeg;base64," . $imageData;
+                              ?>
+                                <div class="image2"><img src="<?php echo $imageSrc; ?>"></div>
                               </div>
                               <div class="col-sm-12 col-md-8">
+                              <form method="post" action="" enctype="multipart/form-data">
                                 <div class="row">
+                                <div class="mb-3">
+                                          <label for="profile_pic" class="form-label">Upload New Profile Picture</label>
+                                          <input type="file" class="form-control" id="profile_pic" name="profile_pic" accept="image/*" value="<?php if(isset($_POST['profile_pic'])) { echo $_POST['profile_pic']; }?>">
+                                        </div>
                                   <div class="col-sm-12 col-md-6">
-                                  <form method="post" action="">
                                     <div class="mb-3">
-                                      <label for="last_name" class="form-label">First Name</label>
+                                      <label for="last_name" class="form-label">Last Name</label>
                                       <input type="text" class="form-control" id="last_name" name="last_name" required value="<?php if(isset($_POST['last_name'])) { echo $_POST['last_name']; }else if(isset($user->last_name)) { echo $user->last_name; } ?>">
                                       <?php
                                           if(isset($_POST['last_name']) && !validate_field($_POST['last_name'])){
@@ -204,15 +231,15 @@
                                       ?>
                                     </div>
                                   </div>
+                                  <div class="row" id="sc-btn">
+                                  <button type="submit" name="save" class="btn" id="login-btn">Save</button>
+                                </div>
+                                </form>
                                 </div>
                               </div>
                             </div>
-
-                            <div class="row" id="sc-btn">
-                              <button type="submit" name="save" class="btn" id="login-btn">Save</button>
-                            </div>
-                          </form>
                         </div>
+
                         <div class="tab-pane fade" id="notifications">
                             <h3>Notifications Settings</h3>
                             <!-- Include notifications settings content here -->

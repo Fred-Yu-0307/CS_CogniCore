@@ -135,6 +135,14 @@
     border:none;
 }
 
+.image2 > img {
+  border-radius: 0.5rem;
+  object-fit: cover; /* Crop the image to cover the container */
+  width: 80%; /* Set the width to 100% of the container */
+  height: 80%; /* Set the height to 100% of the container */
+  border: 2px solid #491212;
+}
+
 
   @media screen and (max-width: 992px) {
     .request {
